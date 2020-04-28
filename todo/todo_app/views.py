@@ -8,7 +8,6 @@ from .serializers import TodoSerializer, TodoCompletedSerializer
 from .models import Todo
 
 
-# Create your views here.
 @api_view(['GET'])
 def todoList(request):
     tasks = Todo.objects.all().order_by('-id')
