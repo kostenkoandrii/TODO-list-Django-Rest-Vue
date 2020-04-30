@@ -4,11 +4,11 @@
       <div class="task-wrapper flex-wrapper">
         <div style="flex: 1">
           <input type="button"
-                 id="status_true"
+                 class="status_true"
                  @click="updateStatus(task.id, false, index)"
                  v-if="task.completed">
           <input type=button
-                 id="status_false"
+                 class="status_false"
                  @click="updateStatus(task.id, true, index)" v-else>
         </div>
         <div class="task" style="flex: 6">
@@ -58,7 +58,7 @@
 
       deleteTask(id, index) {
         axios
-          .delete(this.url + 'todo-delete/' + id)
+          .delete(this.url + 'todo-upadate/' + id)
           .then(response => {
             console.log(response.data),
               this.tasks.splice(index, 1);
@@ -68,7 +68,7 @@
 
       updateStatus(id, status, index) {
         axios
-          .post(this.url + 'todo-completed-update/' + id, {completed: status})
+          .patch(this.url + 'todo-upadate/' + id, {completed: status})
           .then(response => {
             this.tasks[index].completed = response.data.completed;
           })
@@ -91,7 +91,7 @@
     padding-left: 20px;
   }
 
-  #status_true {
+  .status_true {
     background-image: url("../assets/done_button.png");
     background-size: cover;
     padding: 0;
@@ -105,7 +105,7 @@
     background-color: white;
   }
 
-  #status_false {
+  .status_false {
     background-size: cover;
     padding: 0;
     width: 35px;

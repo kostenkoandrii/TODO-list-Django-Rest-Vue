@@ -34,7 +34,7 @@
     methods: {
       putTask() {
         axios
-          .post(this.url + 'todo-create', {title: this.put})
+          .post(this.url + 'todo-list/', {title: this.put})
           .then(response => {
             this.$emit('putTask', response.data);
             this.put = '';
